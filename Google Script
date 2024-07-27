@@ -1,0 +1,38 @@
+// Google App Script
+
+function submitData() {
+  var ss =SpreadsheetApp.getActiveSpreadsheet();
+  var formSS=ss.getSheetByName("Drawer"); //Form Sheet
+  var datasheet=ss.getSheetByName("History"); //Data Sheet
+  
+  //Input Values - Get data from all cells from input form
+  var values= [formSS.getRange("C3").getValue(),
+                formSS.getRange("C6").getValue(),
+                formSS.getRange("C7").getValue(),
+                formSS.getRange("C8").getValue(),
+                formSS.getRange("C9").getValue(),
+                formSS.getRange("C10").getValue(),
+                formSS.getRange("C11").getValue(),
+                formSS.getRange("C12").getValue(),
+                formSS.getRange("C13").getValue(),
+                formSS.getRange("C14").getValue(),
+                formSS.getRange("C15").getValue(),
+                formSS.getRange("D18").getValue(),
+                formSS.getRange("D20").getValue(),
+                formSS.getRange("D22").getValue(),
+                formSS.getRange("D25").getValue(),
+                formSS.getRange("F22").getValue(),
+                formSS.getRange("F25").getValue()];
+  
+  // Copy data fields to History Sheet
+  datasheet.getRange(datasheet.getLastRow()+1,1,1,17).setValues(values);
+  
+  // user success msg
+  Browser.msgBox("Submitted!");
+  
+  // Reset cash form
+  formSS.getRange("C6:C15").clearContent()
+  formSS.getRange("D20").clearContent()
+  formSS.getRange("D22").clearContent()
+  formSS.getRange("F22").clearContent();
+}
